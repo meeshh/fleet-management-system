@@ -3,16 +3,11 @@
 import Status from "@/components/status";
 import TableHeader from "@/components/table-header";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import {
   faTruck,
   faGasPump,
   faUser,
-  faSortUp,
-  faSortDown,
-  faSort,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const columns = [
   {
