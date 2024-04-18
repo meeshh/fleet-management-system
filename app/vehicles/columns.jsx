@@ -1,19 +1,27 @@
 "use client";
 
 import Status from "@/components/status";
+import TableHeader from "@/components/table-header";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { faTruck, faGasPump, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "@/components/ui/button";
+import {
+  faTruck,
+  faGasPump,
+  faUser,
+  faSortUp,
+  faSortDown,
+  faSort,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const columns = [
   {
     accessorKey: "name",
-    header: () => (
-      <div className="font-bold flex gap-2 items-center">
-        <FontAwesomeIcon icon={faTruck} />
-        Vehicle
-      </div>
-    ),
+    header: ({ column }) => {
+      return (
+        <TableHeader name="Vehicle" column={column} icon={faTruck} sortable />
+      );
+    },
     cell: ({ row: { original } }) => {
       const { name, status } = original;
       return (
@@ -26,20 +34,14 @@ export const columns = [
   },
   {
     accessorKey: "fuelType",
-    header: () => (
-      <div className="font-bold flex gap-2 items-center">
-        <FontAwesomeIcon icon={faGasPump} />
-        Fuel Type
-      </div>
+    header: ({ column }) => (
+      <TableHeader name="Fuel Type" column={column} icon={faGasPump} sortable />
     ),
   },
   {
     accessorKey: "driver",
-    header: () => (
-      <div className="font-bold flex gap-2 items-center">
-        <FontAwesomeIcon icon={faUser} />
-        Driver
-      </div>
+    header: ({column}) => (
+      <TableHeader name="Driver" column={column} icon={faUser} sortable />
     ),
     cell: ({ row: { original } }) => {
       const { driver } = original;
@@ -48,7 +50,6 @@ export const columns = [
           <Avatar>
             <AvatarFallback>{driver[0].toUpperCase()}</AvatarFallback>
           </Avatar>
-
           {driver}
         </div>
       );

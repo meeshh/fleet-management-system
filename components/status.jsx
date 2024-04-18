@@ -1,6 +1,8 @@
 const Status = ({ status }) => {
   return (
-    <div
+    <span
+      title={status}
+      role="status"
       className={`w-4 h-4 ${
         status === "active" ? "bg-green-500" : "bg-red-500"
       } rounded-full`}
