@@ -1,9 +1,12 @@
 "use client";
 
+import ContextMenu from "@/components/context-menu";
 import EquipmentIcon from "@/components/equipment-icon";
+import EquipmentsDialog from "@/components/equipments-dialog";
 import Status from "@/components/status";
 import TableHeader from "@/components/table-header";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Dialog } from "@/components/ui/dialog";
 import { Tooltip } from "@/components/ui/tooltip";
 import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { User, Truck, Cog, Fuel } from "lucide-react";
@@ -57,7 +60,7 @@ export const columns = [
   {
     accessorKey: "equipments",
     header: ({ column }) => (
-      <TableHeader name="Equipments" column={column} icon={Cog} />
+      <TableHeader className="text-center" name="Equipments" column={column} />
     ),
     cell: ({
       row: {
@@ -71,6 +74,25 @@ export const columns = [
             return <EquipmentIcon key={id} accessKey={equipmentsMap[id]} />;
           })}
         </div>
+      );
+    },
+  },
+  {
+    accessorKey: "actions",
+    header: ({ column }) => (
+      <TableHeader className="justify-center" column={column} icon={Cog} />
+    ),
+    cell: ({
+      row: {
+        original: { equipments, id },
+      },
+      table: { equipments: equipmentsMap },
+    }) => {
+      return (
+        <Dialog>
+          <ContextMenu />
+          <EquipmentsDialog equipments={equipments} equipmentsMap={equipmentsMap} />
+        </Dialog>
       );
     },
   },
