@@ -10,6 +10,7 @@ import { Dialog } from "@/components/ui/dialog";
 import { Tooltip } from "@/components/ui/tooltip";
 import { TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { User, Truck, Cog, Fuel } from "lucide-react";
+import Link from "next/link";
 
 export const columns = [
   {
@@ -24,7 +25,7 @@ export const columns = [
       return (
         <div className="flex gap-2 items-center">
           <Status status={status} />
-          {name}
+          <Link className="underline" href={`/vehicles/${original.id}`}>{name}</Link>
         </div>
       );
     },
@@ -91,7 +92,10 @@ export const columns = [
       return (
         <Dialog>
           <ContextMenu />
-          <EquipmentsDialog equipments={equipments} equipmentsMap={equipmentsMap} />
+          <EquipmentsDialog
+            equipments={equipments}
+            equipmentsMap={equipmentsMap}
+          />
         </Dialog>
       );
     },
